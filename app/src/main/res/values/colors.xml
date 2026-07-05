@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="green">#FF4CAF50</color>
-    <color name="red">#FFF44336</color>
+    <!-- Brand Colors -->
+    <color name="primary">#000000</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="secondary">#0050D7</color>
+    <color name="on_secondary">#FFFFFF</color>
+
+    <!-- Surface & Background -->
+    <color name="surface">#FCF8F8</color>
+    <color name="on_surface">#1C1B1B</color>
+    <color name="background">#FCF8F8</color>
+    <color name="on_background">#1C1B1B</color>
+
+    <!-- Tonal Layers & Containers -->
+    <color name="surface_container">#F1EDEC</color>
+    <color name="surface_container_high">#EBE7E7</color>
+    <color name="surface_variant">#E5E2E1</color>
+    <color name="on_surface_variant">#444747</color>
+
+    <!-- Functional -->
+    <color name="outline">#747878</color>
+    <color name="error">#BA1A1A</color>
+    <color name="on_error">#FFFFFF</color>
+
+    <!-- Financial Indicators (Custom) -->
+    <color name="financial_gain">#4CAF50</color>
+    <color name="financial_loss">#F44336</color>
 </resources>

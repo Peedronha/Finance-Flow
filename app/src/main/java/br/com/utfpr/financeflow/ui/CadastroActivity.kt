@@ -82,7 +82,7 @@ class CadastroActivity : AppCompatActivity() {
             if (validarCampos(nome, valorTexto)) {
                 val valor = BigDecimal(valorTexto)
                 viewModel.salvar(nome, descricao, valor, dataSelecionada, tipo, categoria)
-                Toast.makeText(this, "Transação salva com sucesso!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.msg_success_save), Toast.LENGTH_SHORT).show()
                 finish()
             }
         }
@@ -101,19 +101,19 @@ class CadastroActivity : AppCompatActivity() {
     private fun validarCampos(nome: String, valor: String): Boolean {
         var isValid = true
         if (nome.isBlank()) {
-            binding.tilNome.error = "Informe o nome"
+            binding.tilNome.error = getString(R.string.error_empty_name)
             isValid = false
         } else {
             binding.tilNome.error = null
         }
         
         if (valor.isBlank()) {
-            binding.tilValor.error = "Informe o valor"
+            binding.tilValor.error = getString(R.string.error_empty_value)
             isValid = false
         } else {
             val valorNum = valor.toDoubleOrNull()
             if (valorNum == null || valorNum <= 0) {
-                binding.tilValor.error = "Valor deve ser maior que zero"
+                binding.tilValor.error = getString(R.string.error_invalid_value)
                 isValid = false
             } else {
                 binding.tilValor.error = null
@@ -124,7 +124,7 @@ class CadastroActivity : AppCompatActivity() {
 
     private fun abrirDatePicker() {
         val picker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Selecione a data")
+            .setTitleText(getString(R.string.title_date_picker))
             .setSelection(dataSelecionada)
             .build()
 
@@ -139,6 +139,6 @@ class CadastroActivity : AppCompatActivity() {
     private fun atualizarBotaoData() {
         val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         val dataFormatada = sdf.format(Date(dataSelecionada))
-        binding.data.text = "Data: $dataFormatada"
+        binding.data.text = getString(R.string.label_date, dataFormatada)
     }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing -->
+    <dimen name="spacing_base">4dp</dimen>
+    <dimen name="container_padding">24dp</dimen>
+    <dimen name="element_gap">16dp</dimen>
+    <dimen name="section_margin">40dp</dimen>
+    <dimen name="gutter">12dp</dimen>
+
+    <!-- Radius -->
+    <dimen name="radius_sm">8dp</dimen>
+    <dimen name="radius_default">16dp</dimen>
+    <dimen name="radius_md">24dp</dimen>
+    <dimen name="radius_lg">32dp</dimen>
+    <dimen name="radius_xl">48dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="text_display_balance">64sp</dimen>
+    <dimen name="text_display_input">80sp</dimen>
+    <dimen name="text_section_header">24sp</dimen>
+    <dimen name="text_screen_title">20sp</dimen>
+    <dimen name="text_body_main">16sp</dimen>
+    <dimen name="text_label_caps">12sp</dimen>
+</resources>

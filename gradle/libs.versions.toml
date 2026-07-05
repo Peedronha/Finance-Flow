@@ -16,6 +16,7 @@ lifecycle = "2.8.7"
 coroutines = "1.9.0"
 ksp = "2.0.21-1.0.28"
 mpAndroidChart = "v3.1.0"
+datastore = "1.1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -44,6 +45,9 @@ material-v1110 = { module = "com.google.android.material:material", version.ref 
 
 # MPAndroidChart
 mpAndroidChart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpAndroidChart" }
+
+# DataStore
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

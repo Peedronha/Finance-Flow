@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="24dp">
 
         <TextView
             android:id="@+id/tvTituloDashboard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dashboard 50/30/20"
+            android:text="@string/title_dashboard_layout"
+            android:textColor="@color/on_surface"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,42 +27,49 @@
             android:id="@+id/pieChart"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintTop_toBottomOf="@id/tvTituloDashboard" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardMetas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardElevation="4dp"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="@color/surface"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/outline_variant"
+            app:strokeWidth="1dp"
             app:layout_constraintTop_toBottomOf="@id/pieChart">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="24dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Resumo de Metas"
+                    android:text="@string/label_summary_goals"
+                    android:textColor="@color/on_surface"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvMetaReserva"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Reserva (6 meses): R$ 0,00" />
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/on_surface_variant"
+                    tools:text="Reserva (6 meses): R$ 0,00" />
 
                 <TextView
                     android:id="@+id/tvMetaIndependencia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Independência Financeira: R$ 0,00" />
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/on_surface_variant"
+                    tools:text="Independência Financeira: R$ 0,00" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -68,8 +77,9 @@
             android:id="@+id/labelFixas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Despesas Fixas (Teto 50%)"
+            android:layout_marginTop="32dp"
+            android:text="@string/label_fixed_limit"
+            android:textColor="@color/on_surface"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardMetas" />
 
@@ -78,8 +88,8 @@
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:progressDrawable="@android:drawable/progress_horizontal"
+            android:layout_marginTop="8dp"
+            android:progressTint="@color/secondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/labelFixas" />
@@ -88,6 +98,8 @@
             android:id="@+id/tvValorFixas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/on_surface_variant"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pbFixas"
@@ -98,7 +110,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Estilo de Vida (Teto 30%)"
+            android:text="@string/label_lifestyle_limit"
+            android:textColor="@color/on_surface"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvValorFixas" />
 
@@ -107,7 +120,8 @@
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
+            android:progressTint="@color/secondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/labelVariaveis" />
@@ -116,6 +130,8 @@
             android:id="@+id/tvValorVariaveis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/on_surface_variant"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pbVariaveis"
@@ -126,7 +142,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Investimentos (Meta 20%)"
+            android:text="@string/label_investments_goal"
+            android:textColor="@color/on_surface"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvValorVariaveis" />
 
@@ -135,7 +152,8 @@
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
+            android:progressTint="@color/secondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/labelInvestimentos" />
@@ -144,6 +162,8 @@
             android:id="@+id/tvValorInvestimentos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/on_surface_variant"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pbInvestimentos"

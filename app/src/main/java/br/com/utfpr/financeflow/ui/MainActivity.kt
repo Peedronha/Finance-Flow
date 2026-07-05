@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.utfpr.financeflow.data.local.database.AppDatabase
+import br.com.utfpr.financeflow.data.local.datastore.DataStoreManager
 import br.com.utfpr.financeflow.data.repository.TransactionRepository
 import br.com.utfpr.financeflow.databinding.ActivityMainBinding
 import br.com.utfpr.financeflow.ui.adapter.TransacaoAdapter
@@ -25,7 +26,8 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: FinanceViewModel by viewModels {
         val database = AppDatabase.getDatabase(this)
         val repository = TransactionRepository(database.transactionDao())
-        FinanceViewModelFactory(repository)
+        val dataStoreManager = DataStoreManager(this)
+        FinanceViewModelFactory(repository, dataStoreManager)
     }
     private val adapter = TransacaoAdapter()
 
@@ -70,6 +72,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.cardSaldo.setOnClickListener {
             val intent = Intent(this, DashboardActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnSettings?.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
     }

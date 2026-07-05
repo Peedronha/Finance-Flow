@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="24dp"
         tools:context=".ui.CadastroActivity">
 
         <TextView
@@ -17,7 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Nova Transação"
+            android:text="@string/title_new_transaction"
+            android:textColor="@color/on_surface"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,8 +31,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:hint="Nome da Transação"
+            android:layout_marginTop="32dp"
+            android:hint="@string/hint_transaction_name"
+            app:boxStrokeColor="@color/outline"
+            app:hintTextColor="@color/on_surface_variant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitulo">
@@ -39,7 +43,8 @@
                 android:id="@+id/nomeTransacao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences" />
+                android:inputType="textCapSentences"
+                android:textColor="@color/on_surface" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -47,8 +52,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="Descrição (Opcional)"
+            android:layout_marginTop="16dp"
+            android:hint="@string/hint_description"
+            app:boxStrokeColor="@color/outline"
+            app:hintTextColor="@color/on_surface_variant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilNome">
@@ -59,7 +66,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:inputType="textMultiLine|textCapSentences"
-                android:minLines="2" />
+                android:minLines="2"
+                android:textColor="@color/on_surface" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -67,8 +75,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="Valor"
+            android:layout_marginTop="16dp"
+            android:hint="@string/hint_value"
+            app:boxStrokeColor="@color/outline"
+            app:hintTextColor="@color/on_surface_variant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilDescricao">
@@ -77,15 +87,17 @@
                 android:id="@+id/valor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:textColor="@color/on_surface" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tvTipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Tipo de Transação:"
+            android:layout_marginTop="24dp"
+            android:text="@string/label_transaction_type"
+            android:textColor="@color/on_surface"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilValor" />
@@ -106,22 +118,25 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="Receita" />
+                android:text="@string/label_income"
+                android:textColor="@color/on_surface" />
 
             <RadioButton
                 android:id="@+id/despesa"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Despesa" />
+                android:text="@string/label_expense"
+                android:textColor="@color/on_surface" />
         </RadioGroup>
 
         <TextView
             android:id="@+id/tvCategoria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Categoria da Despesa:"
+            android:layout_marginTop="24dp"
+            android:text="@string/label_expense_category"
+            android:textColor="@color/on_surface"
             android:textStyle="bold"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
@@ -142,20 +157,23 @@
                 android:id="@+id/rbFixa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Despesa Fixa (50%)" />
+                android:text="@string/label_fixed_expense_ratio"
+                android:textColor="@color/on_surface" />
 
             <RadioButton
                 android:id="@+id/rbVariavel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Estilo de Vida/Variável (30%)" />
+                android:text="@string/label_variable_expense_ratio"
+                android:textColor="@color/on_surface" />
 
             <RadioButton
                 android:id="@+id/rbInvestimento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Investimento (20%)" />
+                android:text="@string/label_investment_ratio"
+                android:textColor="@color/on_surface" />
         </RadioGroup>
 
         <com.google.android.material.button.MaterialButton
@@ -163,9 +181,11 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Selecionar Data"
+            android:layout_marginTop="24dp"
+            android:text="@string/btn_select_date"
             app:icon="@android:drawable/ic_menu_my_calendar"
+            app:strokeColor="@color/outline"
+            android:textColor="@color/primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/radioGroupCategoria" />
@@ -175,8 +195,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:padding="12dp"
-            android:text="Salvar Transação"
+            android:padding="16dp"
+            android:text="@string/btn_save_transaction"
+            app:backgroundTint="@color/primary"
+            app:cornerRadius="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

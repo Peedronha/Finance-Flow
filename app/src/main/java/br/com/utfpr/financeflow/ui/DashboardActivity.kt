@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import br.com.utfpr.financeflow.R
 import br.com.utfpr.financeflow.data.local.database.AppDatabase
+import br.com.utfpr.financeflow.data.local.datastore.DataStoreManager
 import br.com.utfpr.financeflow.data.repository.TransactionRepository
 import br.com.utfpr.financeflow.databinding.ActivityDashboardBinding
 import br.com.utfpr.financeflow.viewModel.FinanceViewModel
@@ -26,7 +28,8 @@ class DashboardActivity : AppCompatActivity() {
     private val viewModel: FinanceViewModel by viewModels {
         val database = AppDatabase.getDatabase(this)
         val repository = TransactionRepository(database.transactionDao())
-        FinanceViewModelFactory(repository)
+        val dataStoreManager = DataStoreManager(this)
+        FinanceViewModelFactory(repository, dataStoreManager)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +38,7 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Inteligência Financeira"
+        supportActionBar?.title = getString(R.string.title_dashboard)
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -50,11 +53,11 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun atualizarGrafico(fixas: Float, variaveis: Float, investimentos: Float) {
         val entries = mutableListOf<PieEntry>()
-        if (fixas > 0) entries.add(PieEntry(fixas, "Fixas"))
-        if (variaveis > 0) entries.add(PieEntry(variaveis, "Variáveis"))
-        if (investimentos > 0) entries.add(PieEntry(investimentos, "Investimentos"))
+        if (fixas > 0) entries.add(PieEntry(fixas, getString(R.string.label_fixed)))
+        if (variaveis > 0) entries.add(PieEntry(variaveis, getString(R.string.label_variables)))
+        if (investimentos > 0) entries.add(PieEntry(investimentos, getString(R.string.label_investments)))
 
-        val dataSet = PieDataSet(entries, "Distribuição de Gastos")
+        val dataSet = PieDataSet(entries, getString(R.string.chart_distribution_title))
         dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
         dataSet.valueTextColor = Color.BLACK
         dataSet.valueTextSize = 14f
@@ -62,7 +65,7 @@ class DashboardActivity : AppCompatActivity() {
         val pieData = PieData(dataSet)
         binding.pieChart.data = pieData
         binding.pieChart.description.isEnabled = false
-        binding.pieChart.centerText = "Gastos"
+        binding.pieChart.centerText = getString(R.string.chart_center_text)
         binding.pieChart.animateY(1000)
         binding.pieChart.invalidate()
     }
@@ -73,23 +76,23 @@ class DashboardActivity : AppCompatActivity() {
         // Fixas
         binding.pbFixas.max = data.tetoFixas.toInt().coerceAtLeast(1)
         binding.pbFixas.progress = data.gastosFixos.toInt()
-        binding.tvValorFixas.text = "${nf.format(data.gastosFixos)} / ${nf.format(data.tetoFixas)}"
+        binding.tvValorFixas.text = getString(R.string.format_progress, nf.format(data.gastosFixos), nf.format(data.tetoFixas))
 
         // Variáveis
         binding.pbVariaveis.max = data.tetoVariaveis.toInt().coerceAtLeast(1)
         binding.pbVariaveis.progress = data.gastosVariaveis.toInt()
-        binding.tvValorVariaveis.text = "${nf.format(data.gastosVariaveis)} / ${nf.format(data.tetoVariaveis)}"
+        binding.tvValorVariaveis.text = getString(R.string.format_progress, nf.format(data.gastosVariaveis), nf.format(data.tetoVariaveis))
 
         // Investimentos
         binding.pbInvestimentos.max = data.tetoInvestimentos.toInt().coerceAtLeast(1)
         binding.pbInvestimentos.progress = data.investimentos.toInt()
-        binding.tvValorInvestimentos.text = "${nf.format(data.investimentos)} / ${nf.format(data.tetoInvestimentos)}"
+        binding.tvValorInvestimentos.text = getString(R.string.format_progress, nf.format(data.investimentos), nf.format(data.tetoInvestimentos))
     }
 
     private fun atualizarMetas(data: br.com.utfpr.financeflow.viewModel.PlanejamentoData) {
         val nf = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
-        binding.tvMetaReserva.text = "Reserva de Emergência (6 meses): ${nf.format(data.metaReserva)}"
-        binding.tvMetaIndependencia.text = "Meta Independência Financeira: ${nf.format(data.metaIndependencia)}"
+        binding.tvMetaReserva.text = getString(R.string.format_meta_reserva, nf.format(data.metaReserva))
+        binding.tvMetaIndependencia.text = getString(R.string.format_meta_independencia, nf.format(data.metaIndependencia))
     }
 
     override fun onSupportNavigateUp(): Boolean {

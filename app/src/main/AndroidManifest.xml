@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".FinanceflowApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -24,12 +25,17 @@
         <activity
             android:name=".ui.CadastroActivity"
             android:exported="false"
-            android:label="Cadastrar Transação" />
+            android:label="@string/title_new_transaction" />
 
         <activity
             android:name=".ui.DashboardActivity"
             android:exported="false"
-            android:label="Inteligência Financeira" />
+            android:label="@string/title_dashboard" />
+
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:exported="false"
+            android:label="@string/title_settings" />
 
     </application>
 

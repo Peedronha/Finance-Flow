@@ -1,4 +1,53 @@
 <resources>
     <string name="app_name">Financeflow</string>
     <string name="empty_state_message">Nenhuma transação encontrada</string>
+    <string name="msg_success_save">Transação salva com sucesso!</string>
+    <string name="error_empty_name">Informe o nome</string>
+    <string name="error_empty_value">Informe o valor</string>
+    <string name="error_invalid_value">Valor deve ser maior que zero</string>
+    <string name="title_date_picker">Selecione a data</string>
+    <string name="label_date">Data: %1$s</string>
+
+    <!-- Dashboard Strings -->
+    <string name="title_dashboard">Inteligência Financeira</string>
+    <string name="label_summary_goals">Resumo de Metas</string>
+    <string name="label_fixed_limit">Despesas Fixas (Teto 50%)</string>
+    <string name="label_lifestyle_limit">Estilo de Vida (Teto 30%)</string>
+    <string name="label_investments_goal">Investimentos (Meta 20%)</string>
+    <string name="label_fixed">Fixas</string>
+    <string name="label_variables">Variáveis</string>
+    <string name="label_investments">Investimentos</string>
+    <string name="chart_distribution_title">Distribuição de Gastos</string>
+    <string name="chart_center_text">Gastos</string>
+    <string name="format_progress">%1$s / %2$s</string>
+    <string name="format_meta_reserva">Reserva de Emergência (6 meses): %1$s</string>
+    <string name="format_meta_independencia">Meta Independência Financeira: %1$s</string>
+    <string name="title_dashboard_layout">Dashboard 50/30/20</string>
+
+    <!-- Settings Strings -->
+    <string name="title_settings">Configurações</string>
+    <string name="msg_settings_saved">Configurações salvas!</string>
+    <string name="hint_custom_reserve_goal">Meta de Reserva Personalizada (R$)</string>
+    <string name="label_dark_mode">Ativar Modo Escuro</string>
+    <string name="btn_save_preferences">Salvar Preferências</string>
+
+    <!-- Main Strings -->
+    <string name="label_current_balance">Saldo Atual</string>
+    <string name="cd_settings">Configurações</string>
+    <string name="cd_add_transaction">Adicionar transação</string>
+
+    <!-- Cadastro Strings -->
+    <string name="title_new_transaction">Nova Transação</string>
+    <string name="hint_transaction_name">Nome da Transação</string>
+    <string name="hint_description">Descrição (Opcional)</string>
+    <string name="hint_value">Valor</string>
+    <string name="label_transaction_type">Tipo de Transação:</string>
+    <string name="label_income">Receita</string>
+    <string name="label_expense">Despesa</string>
+    <string name="label_expense_category">Categoria da Despesa:</string>
+    <string name="label_fixed_expense_ratio">Despesa Fixa (50%)</string>
+    <string name="label_variable_expense_ratio">Estilo de Vida/Variável (30%)</string>
+    <string name="label_investment_ratio">Investimento (20%)</string>
+    <string name="btn_select_date">Selecionar Data</string>
+    <string name="btn_save_transaction">Salvar Transação</string>
 </resources>

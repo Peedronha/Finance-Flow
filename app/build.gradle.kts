@@ -65,6 +65,9 @@ dependencies {
     // MPAndroidChart
     implementation(libs.mpAndroidChart)
 
+    // DataStore
+    implementation(libs.androidx.datastore.preferences)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

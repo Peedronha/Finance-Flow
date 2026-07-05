@@ -2,7 +2,9 @@ package br.com.utfpr.financeflow.viewModel
 
 import androidx.lifecycle.ViewModel
 import br.com.utfpr.financeflow.data.repository.TransactionRepository
+import br.com.utfpr.financeflow.data.local.datastore.DataStoreManager
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import androidx.lifecycle.viewModelScope
@@ -12,7 +14,10 @@ import br.com.utfpr.financeflow.model.Transacao
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 
-class FinanceViewModel(private val transactionRepository: TransactionRepository) : ViewModel() {
+class FinanceViewModel(
+    private val transactionRepository: TransactionRepository,
+    private val dataStoreManager: DataStoreManager
+) : ViewModel() {
 
     val listaTransacoes = transactionRepository.todasTransacoes.stateIn(
         scope = viewModelScope,
@@ -34,8 +39,11 @@ class FinanceViewModel(private val transactionRepository: TransactionRepository)
         }
     }
     
-    // Motor de Regras 50/30/20
-    val planejamentoFinanceiro = listaTransacoes.map { lista ->
+    // Motor de Regras 50/30/20 Integrado com Meta Personalizada do DataStore
+    val planejamentoFinanceiro = combine(
+        listaTransacoes,
+        dataStoreManager.metaPersonalizada
+    ) { lista, metaCustom ->
         val rendaLiquida = lista.filter { it.tipo == TipoTransacao.RECEITA }
             .sumOf { it.valor.toDouble() }
             .toBigDecimal()
@@ -52,6 +60,13 @@ class FinanceViewModel(private val transactionRepository: TransactionRepository)
             .sumOf { it.valor.toDouble() }
             .toBigDecimal()
 
+        // Se a meta customizada for > 0, usa ela, senão usa a padrão (6x renda)
+        val metaReservaCalculada = if (metaCustom > 0) {
+            BigDecimal.valueOf(metaCustom)
+        } else {
+            rendaLiquida.multiply(BigDecimal("6.0"))
+        }
+
         PlanejamentoData(
             rendaLiquida = rendaLiquida,
             gastosFixos = gastosFixos,
@@ -60,8 +75,9 @@ class FinanceViewModel(private val transactionRepository: TransactionRepository)
             tetoFixas = rendaLiquida.multiply(BigDecimal("0.50")),
             tetoVariaveis = rendaLiquida.multiply(BigDecimal("0.30")),
             tetoInvestimentos = rendaLiquida.multiply(BigDecimal("0.20")),
-            metaReserva = rendaLiquida.multiply(BigDecimal("6.0")),
-            metaIndependencia = if (rendaLiquida > BigDecimal.ZERO) rendaLiquida.divide(BigDecimal("0.01"), 2, java.math.RoundingMode.HALF_UP) else BigDecimal.ZERO
+            metaReserva = metaReservaCalculada,
+            metaIndependencia = if (rendaLiquida > BigDecimal.ZERO) rendaLiquida.divide(BigDecimal("0.01"), 2, java.math.RoundingMode.HALF_UP) else BigDecimal.ZERO,
+            isMetaCustom = metaCustom > 0
         )
     }.stateIn(
         scope = viewModelScope,
@@ -79,5 +95,6 @@ data class PlanejamentoData(
     val tetoVariaveis: BigDecimal = BigDecimal.ZERO,
     val tetoInvestimentos: BigDecimal = BigDecimal.ZERO,
     val metaReserva: BigDecimal = BigDecimal.ZERO,
-    val metaIndependencia: BigDecimal = BigDecimal.ZERO
+    val metaIndependencia: BigDecimal = BigDecimal.ZERO,
+    val isMetaCustom: Boolean = false
 )
