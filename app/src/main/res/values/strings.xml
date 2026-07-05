@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Financeflow</string>
+    <string name="empty_state_message">Nenhuma transação encontrada</string>
+</resources>
