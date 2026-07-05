@@ -42,9 +42,9 @@ class TransacaoAdapter : ListAdapter<Transacao, TransacaoAdapter.ViewHolder>(Dif
         holder.valor.text = nf.format(item.valor)
 
         val color = if (item.tipo == TipoTransacao.RECEITA) {
-            R.color.green
+            R.color.financial_gain
         } else {
-            R.color.red
+            R.color.financial_loss
         }
         holder.valor.setTextColor(ContextCompat.getColor(holder.itemView.context, color))
     }

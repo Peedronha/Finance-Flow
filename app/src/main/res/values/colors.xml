@@ -20,6 +20,7 @@
 
     <!-- Functional -->
     <color name="outline">#747878</color>
+    <color name="outline_variant">#C4C7C7</color>
     <color name="error">#BA1A1A</color>
     <color name="on_error">#FFFFFF</color>
 

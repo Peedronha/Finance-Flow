@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import br.com.utfpr.financeflow.R
 import br.com.utfpr.financeflow.data.local.database.AppDatabase
+import br.com.utfpr.financeflow.data.local.datastore.DataStoreManager
 import br.com.utfpr.financeflow.data.repository.TransactionRepository
 import br.com.utfpr.financeflow.databinding.ActivityCadastroBinding
 import br.com.utfpr.financeflow.model.CategoriaTransacao
@@ -25,7 +26,8 @@ class CadastroActivity : AppCompatActivity() {
     private val viewModel: FinanceViewModel by viewModels {
         val database = AppDatabase.getDatabase(this)
         val repository = TransactionRepository(database.transactionDao())
-        FinanceViewModelFactory(repository)
+        val dataStoreManager = DataStoreManager(this)
+        FinanceViewModelFactory(repository, dataStoreManager)
     }
 
     private var dataSelecionada: Long = System.currentTimeMillis()

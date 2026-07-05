@@ -26,4 +26,9 @@
     </style>
 
     <style name="Theme.Financeflow" parent="Base.Theme.Financeflow" />
+
+    <style name="ShapeAppearance.Financeflow.Pill" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
